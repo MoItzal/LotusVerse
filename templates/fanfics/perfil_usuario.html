@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/perfil-usuario.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="perfil-usuario">
+
+    <header class="perfil-topo">
+
+        <div class="perfil-avatar">
+            {% if user.perfil.avatar %}
+                <img src="{{ user.perfil.avatar.url }}">
+            {% else %}
+                <span class="avatar-fallback">
+                    {{ user.username|first|upper }}
+                </span>
+            {% endif %}
+        </div>
+
+        <h1>{{ user.username }}</h1>
+
+        <p class="bio">
+            {{ user.perfil.bio|default:"Leitora de universos fictícios 🌙" }}
+        </p>
+
+        <a href="{% url 'editar_perfil' %}" class="btn-link">
+            ✏️ Editar perfil
+        </a>
+
+    </header>
+
+    <!-- ÚLTIMAS LEITURAS -->
+    <section class="perfil-bloco">
+        <h3>📚 Últimas leituras</h3>
+        {% for leitura in ultimas_leituras %}
+            <p>{{ leitura.fanfic.titulo }}</p>
+        {% empty %}
+            <p class="vazio">Nenhuma leitura recente.</p>
+        {% endfor %}
+    </section>
+
+    <!-- LISTAS -->
+    <section class="perfil-bloco">
+        <h3>🗂️ Minhas listas</h3>
+        <div class="listas">
+            <div class="lista-card">❤️ Favoritas</div>
+            <div class="lista-card">📖 Lendo</div>
+            <div class="lista-card">🌙 Quero ler</div>
+        </div>
+    </section>
+
+</section>
+
+{% endblock %}

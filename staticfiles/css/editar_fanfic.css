@@ -1,0 +1,213 @@
+/* ===============================
+   LOTUS VERSE — EDITAR_FANFIC.CSS
+   Tema automático (usa variáveis do home.css)
+   =============================== */
+
+/* ===============================
+   CONTAINER
+   =============================== */
+.editor-container{
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 24px;
+  color: var(--text-color);
+}
+
+/* ===============================
+   TÍTULO
+   =============================== */
+.editor-container h1{
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+/* ===============================
+   STATUS
+   =============================== */
+.editor-status{ margin-bottom: 20px; }
+
+.badge{
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--border-color);
+  background: color-mix(in srgb, var(--card-color) 92%, transparent);
+  color: var(--text-color);
+}
+
+.badge.draft{
+  /* douradinho suave que funciona em dark e light */
+  background: color-mix(in srgb, #f5c26b 18%, var(--card-color));
+  color: color-mix(in srgb, #f5c26b 70%, var(--text-color));
+  border-color: color-mix(in srgb, #f5c26b 35%, var(--border-color));
+}
+
+.badge.published{
+  background: color-mix(in srgb, #2e7d32 20%, var(--card-color));
+  color: color-mix(in srgb, #2e7d32 70%, var(--text-color));
+  border-color: color-mix(in srgb, #2e7d32 35%, var(--border-color));
+}
+
+/* ===============================
+   BOXES (ÍNDICE / DETALHES)
+   =============================== */
+.editor-box{
+  background: var(--card-color);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow);
+}
+
+.editor-box h2{
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+/* ===============================
+   LISTA DE CAPÍTULOS
+   =============================== */
+.capitulo-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 18px 20px;
+  margin-bottom: 10px;
+
+  background: color-mix(in srgb, var(--card-color) 92%, var(--bg-color));
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+
+  text-decoration: none;
+  color: var(--text-color);
+
+  cursor: pointer;
+  transition: background .18s ease, border-color .18s ease, transform .05s ease;
+}
+
+.capitulo-item:hover{
+  background: color-mix(in srgb, var(--accent-color) 14%, var(--card-color));
+  border-color: color-mix(in srgb, var(--accent-color) 30%, var(--border-color));
+}
+
+.capitulo-item:active{
+  transform: translateY(1px);
+}
+
+.capitulo-item span{
+  margin-right: 6px;
+  opacity: .8;
+  color: var(--secondary-text);
+}
+
+.capitulo-item strong{ color: var(--text-color); }
+
+.cap-status{
+  font-size: .85rem;
+  color: color-mix(in srgb, var(--accent-color) 80%, var(--text-color));
+}
+
+/* ===============================
+   FORMULÁRIOS
+   =============================== */
+label{
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: var(--secondary-text);
+}
+
+input, textarea{
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+
+  background: color-mix(in srgb, var(--card-color) 92%, var(--bg-color));
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+
+  color: var(--text-color);
+  font-size: 14px;
+
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+input:focus, textarea:focus{
+  outline: none;
+  border-color: color-mix(in srgb, var(--accent-color) 55%, var(--border-color));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-color) 25%, transparent);
+}
+
+textarea{ resize: vertical; }
+
+/* ===============================
+   BOTÕES
+   =============================== */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+
+  transition: background .18s ease, opacity .18s ease, transform .05s ease;
+}
+
+.btn:active{ transform: translateY(1px); }
+
+.btn.salvar{
+  background: var(--accent-color);
+  color: #fff;
+}
+
+.btn.salvar:hover{
+  background: color-mix(in srgb, var(--accent-color) 86%, #ffffff);
+}
+
+/* Botão novo capítulo dentro do box */
+.editor-box .btn.salvar{ margin-top: 10px; }
+
+/* ===============================
+   LINKS
+   =============================== */
+.editor-container a{
+  color: color-mix(in srgb, var(--accent-color) 85%, var(--text-color));
+  text-decoration: none;
+}
+
+.editor-container a:hover{ text-decoration: underline; }
+
+/* ===============================
+   VOLTAR
+   =============================== */
+.editor-container > a{
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* ===============================
+   RESPONSIVO
+   =============================== */
+@media (max-width: 600px){
+  .editor-container{ padding: 15px; }
+
+  .capitulo-item{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}

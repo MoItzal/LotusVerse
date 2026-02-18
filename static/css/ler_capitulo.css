@@ -1,0 +1,111 @@
+/* ===============================
+   LOTUS VERSE — AO3 Reading Mode
+   Layout AO3 (documento) + cores do tema (variáveis)
+   =============================== */
+
+/* Fundo geral da página de leitura */
+.reading-mode{
+  background: var(--bg-color);
+  min-height: 100vh;
+  padding: 34px 16px;
+}
+
+/* "Folha" central (documento) */
+.fanfic-content{
+  max-width: 900px;                  /* largura estilo AO3 */
+  margin: 0 auto;
+  background: var(--card-color);     /* respeita tema */
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 36px 42px;
+  box-shadow: var(--shadow);
+}
+
+/* Cabeçalho */
+.fanfic-header h1{
+  font-size: 28px;
+  margin: 0 0 8px 0;
+  font-weight: 750;
+  color: var(--text-color);
+}
+
+.fanfic-header h2{
+  font-size: 18px;
+  margin: 0 0 14px 0;
+  font-weight: 650;
+  color: var(--secondary-text);
+}
+
+.fanfic-meta{
+  margin: 0 0 22px 0;
+  font-size: 14px;
+  color: var(--secondary-text);
+}
+
+.fanfic-meta a{
+  color: color-mix(in srgb, var(--accent-color) 85%, var(--text-color));
+  text-decoration: none;
+}
+
+.fanfic-meta a:hover{
+  text-decoration: underline;
+}
+
+/* Texto estilo AO3 (tipografia + respiro) */
+.fanfic-text{
+  font-family: Georgia, "Times New Roman", serif; /* AO3 vibe */
+  font-size: 18px;
+  line-height: 1.85;
+  color: var(--text-color);
+}
+
+/* Espaçamento entre parágrafos (linebreaks cria <p>) */
+.fanfic-text p{
+  margin: 0 0 1.1em 0;
+}
+
+/* Links dentro do texto */
+.fanfic-text a{
+  color: color-mix(in srgb, var(--accent-color) 85%, var(--text-color));
+}
+
+/* Separadores */
+.fanfic-content hr{
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: 22px 0;
+}
+
+/* Botões/links de navegação (voltar, próximo etc.) */
+.voltar,
+.nav-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  color: color-mix(in srgb, var(--accent-color) 85%, var(--text-color));
+  text-decoration: none;
+}
+
+.voltar:hover,
+.nav-link:hover{
+  text-decoration: underline;
+}
+
+/* Responsivo */
+@media (max-width: 700px){
+  .fanfic-content{
+    padding: 22px 18px;
+    border-radius: 12px;
+  }
+
+  .fanfic-header h1{
+    font-size: 24px;
+  }
+
+  .fanfic-text{
+    font-size: 16.5px;
+    line-height: 1.8;
+  }
+}

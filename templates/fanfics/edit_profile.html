@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="profile-edit-wrapper">
+  <div class="profile-edit-card">
+
+    <h2>Editar perfil</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="field">
+        <label>Avatar</label>
+        {{ form.avatar }}
+      </div>
+
+      <div class="field">
+        <label>Bio</label>
+        {{ form.bio }}
+      </div>
+
+      <button type="submit" class="btn-save">
+        Salvar alterações
+      </button>
+    </form>
+
+  </div>
+</section>
+{% endblock %}

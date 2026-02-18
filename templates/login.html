@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login • LotusVerse{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+<!-- Contêiner das pétalas -->
+<div class="petals-container"></div>
+
+<!-- CONTAINER CENTRAL -->
+<div class="login-wrapper">
+    <div class="login-box">
+
+        <h1 class="title">🌸 Lotus Verse</h1>
+        <p class="subtitle">Entre para continuar sua jornada</p>
+
+        {% if erro %}
+            <p class="error">{{ erro }}</p>
+        {% endif %}
+
+        <form method="POST" class="login-form">
+            {% csrf_token %}
+
+            <div class="input-group">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" name="username" placeholder="Seu nome de usuário" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" placeholder="Sua senha" required>
+            </div>
+
+            <button type="submit" class="btn-login">Entrar</button>
+        </form>
+
+        <p class="register-text">
+            Não tem conta?
+            <a href="{% url 'register' %}">Criar conta</a>
+        </p>
+
+    </div>
+</div>
+
+<script src="{% static 'js/petals.js' %}"></script>
+
+{% endblock %}

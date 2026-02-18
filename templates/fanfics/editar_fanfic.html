@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/editar_fanfic.css' %}">
+{% endblock %}
+
+{% block title %}{{ fanfic.titulo }}{% endblock %}
+
+{% block content %}
+<section class="editor-container">
+
+    <h1>{{ fanfic.titulo }}</h1>
+
+    {% if fanfic.visibilidade == "draft" %}
+        <p class="editor-status badge draft">
+            📝 <strong>Rascunho</strong> • Só você pode ver
+        </p>
+    {% else %}
+        <p class="editor-status badge published">
+            📖 Publicada
+        </p>
+    {% endif %}
+
+    <hr>
+
+    <div class="editor-box">
+        <h2>📚 Índice</h2>
+
+        {% for capitulo in fanfic.capitulos.all %}
+            <a class="capitulo-item"
+               href="{% url 'editar_capitulo' fanfic.id capitulo.id %}">
+                <span>Capítulo {{ capitulo.ordem }}:</span>
+                <strong>{{ capitulo.titulo }}</strong>
+                <small class="cap-status">Rascunho</small>
+            </a>
+        {% empty %}
+            <p>Nenhum capítulo criado ainda.</p>
+        {% endfor %}
+
+        <a class="btn salvar" href="{% url 'criar_capitulo' fanfic.id %}">
+            ➕ Novo capítulo
+        </a>
+    </div>
+
+    <div class="editor-box">
+        <h2>🛠️ Detalhes da história</h2>
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Título</label>
+            <input type="text" name="titulo" value="{{ fanfic.titulo }}" required>
+
+            <label>Descrição</label>
+            <textarea name="descricao" rows="4" required>{{ fanfic.descricao }}</textarea>
+
+            <button type="submit" class="btn salvar">
+                💾 Salvar detalhes
+            </button>
+        </form>
+    </div>
+
+    {% if fanfic.visibilidade == "draft" %}
+        <form method="POST" action="{% url 'publicar_fanfic' fanfic.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn salvar">
+                🚀 Publicar história
+            </button>
+        </form>
+    {% endif %}
+
+    <a href="{% url 'perfil' %}">← Voltar para meu perfil</a>
+
+</section>
+{% endblock %}

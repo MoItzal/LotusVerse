@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Excluir Fanfic{% endblock %}
+
+{% block content %}
+<h1>🗑️ Excluir Fanfic</h1>
+
+<p>Tem certeza que deseja excluir a fanfic <strong>"{{ fanfic.titulo }}"</strong>?</p>
+<p>Essa ação não pode ser desfeita.</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn-danger">Excluir</button>
+</form>
+
+<a href="{% url 'fanfic_detail' fanfic.id %}">Cancelar</a>
+
+{% endblock %}

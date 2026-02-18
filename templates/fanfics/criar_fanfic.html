@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="create-fanfic-container">
+    <h2>Criar Fanfic</h2>
+
+    <form method="POST" action="{% url 'criar_fanfic' %}">
+        {% csrf_token %}
+
+        <div>
+            <label>Título</label>
+            <input type="text" name="titulo" required>
+        </div>
+
+        <div>
+            <label>Resumo</label>
+            <textarea name="descricao" rows="3" required></textarea>
+        </div>
+
+        <button type="submit">
+            Criar fanfic
+        </button>
+    </form>
+
+</div>
+
+{% endblock %}

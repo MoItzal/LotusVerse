@@ -1,0 +1,136 @@
+/* =============================== */
+/*      VARIÁVEIS GLOBAIS         */
+/* =============================== */
+
+:root {
+    --bg-color: #f5f7fa;
+    --text-color: #1a1a1a;
+    --accent-color: #e08bb8;
+    --card-color: #ffffff;
+    --secondary-text: #5a5a5a;
+
+    --petal-filter: drop-shadow(0 0 6px #ffc6de) saturate(130%);
+}
+
+/* =============================== */
+/*             TEMAS               */
+/* =============================== */
+
+/* TEMA CALM (padrão) */
+.theme-calm {
+    --bg-color: #f5f7fa;
+    --text-color: #1a1a1a;
+    --accent-color: #e08bb8;
+    --card-color: #ffffff;
+    --secondary-text: #5a5a5a;
+    --petal-filter: drop-shadow(0 0 6px #ffc6de) saturate(130%);
+}
+
+/* BLOSSOM */
+.theme-blossom {
+    --bg-color: #ffe6f2;
+    --text-color: #4a0035;
+    --accent-color: #ff2c8a;
+    --card-color: #ffffff;
+    --secondary-text: #7a4060;
+    --petal-filter: drop-shadow(0 0 10px #ff2c8a) saturate(260%);
+}
+
+/* NEON */
+.theme-neon {
+    --bg-color: #020014;
+    --text-color: #e7e7e7;
+    --accent-color: #00eaff;
+    --card-color: #0f0f2a;
+    --secondary-text: #c9c9c9;
+    --petal-filter: drop-shadow(0 0 12px #00eaff) hue-rotate(180deg) saturate(350%);
+}
+
+/* DARK */
+.theme-dark {
+    --bg-color: #0f0f15;
+    --text-color: #f2f2f2;
+    --accent-color: #7b5cff;
+    --card-color: #1a1a22;
+    --secondary-text: #bbb;
+    --petal-filter: drop-shadow(0 0 12px #7b5cff) hue-rotate(220deg) saturate(300%);
+}
+
+/* LIGHT */
+.theme-light {
+    --bg-color: #ffffff;
+    --text-color: #2b2b2b;
+    --accent-color: #ff6fa8;
+    --card-color: #ffffff;
+    --secondary-text: #555;
+    --petal-filter: drop-shadow(0 0 4px #ffadc6) saturate(150%);
+}
+
+/* =============================== */
+/*        APLICAÇÃO GERAL          */
+/* =============================== */
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.4s ease, color 0.4s ease;
+}
+
+.card, a {
+    transition: background 0.4s ease, color 0.4s ease, text-shadow 0.4s ease;
+}
+
+.card {
+    background: var(--card-color);
+}
+
+a {
+    color: var(--accent-color);
+}
+
+a:hover {
+    text-shadow: 0 0 6px var(--accent-color);
+}
+
+/* =============================== */
+/*         BOTÕES DE TEMA           */
+/* =============================== */
+
+#theme-toggle-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.theme-btn {
+    background: none;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    font-size: 24px;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 8px var(--accent-color);
+    transition: all 0.3s ease, transform 0.3s ease;
+}
+
+.theme-btn:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+.theme-btn.active {
+    background: var(--accent-color);
+    color: #fff;
+    box-shadow: 0 0 20px var(--accent-color);
+}
+
+/* =============================== */
+/*     FILTRO DE PÉTALAS           */
+/* =============================== */
+
+.petal {
+    filter: var(--petal-filter);
+    transition: filter 0.4s ease;
+}

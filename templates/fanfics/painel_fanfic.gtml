@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="perfil-usuario">
+
+  <div class="perfil-topo">
+    <h2 class="perfil-nome">{{ fanfic.titulo }}</h2>
+    <p class="bio">{{ fanfic.descricao }}</p>
+
+    <div class="actions">
+      <a class="btn-save" href="{% url 'editar_fanfic' fanfic.id %}">✏️ Editar história</a>
+      <a class="btn-cancel" href="{% url 'criar_capitulo' fanfic.id %}">➕ Novo capítulo</a>
+    </div>
+  </div>
+
+  <div class="lotus-divider"></div>
+
+  <div class="perfil-bloco">
+    <h3>📄 Capítulos</h3>
+
+    {% for capitulo in capitulos %}
+      <div class="fanfic-card">
+        <h4>{{ capitulo.ordem }}. {{ capitulo.titulo }}</h4>
+
+        <a href="{% url 'editar_capitulo' fanfic.id capitulo.id %}">
+          ✏️ Editar capítulo
+        </a>
+      </div>
+    {% empty %}
+      <p class="vazio">Ainda não tem capítulos. Crie o primeiro! ✨</p>
+    {% endfor %}
+  </div>
+
+  <div class="actions">
+    <a class="btn-cancel" href="{% url 'perfil' %}">⬅️ Voltar</a>
+  </div>
+
+</section>
+{% endblock %}

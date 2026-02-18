@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<main class="reading-mode">
+    <article class="fanfic-content">
+
+        <header class="fanfic-header">
+            <h1>{{ fanfic.titulo }}</h1>
+            <p class="fanfic-meta">
+                por <span>{{ fanfic.autor }}</span> · Capítulo {{ fanfic.capitulo }}
+            </p>
+        </header>
+
+        <section class="fanfic-text">
+            {{ fanfic.conteudo|linebreaks }}
+        </section>
+
+    </article>
+</main>
+
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/reading.css' %}">
+{% endblock %}
+

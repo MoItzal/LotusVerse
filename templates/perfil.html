@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_class %}perfil-page{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/perfil.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="perfil-usuario">
+
+    <!-- ===============================
+         TOPO DO PERFIL
+    ================================ -->
+
+    <div class="perfil-topo">
+
+        <div class="perfil-avatar">
+            {% if perfil.avatar %}
+                <img src="{{ perfil.avatar.url }}" alt="Avatar">
+            {% else %}
+                <span class="avatar-fallback">
+                    {{ user.username|first|upper }}
+                </span>
+            {% endif %}
+        </div>
+
+        <h2 class="perfil-nome">{{ user.username }}</h2>
+
+        <a class="btn-editar-perfil" href="{% url 'editar_perfil' %}">
+           ✏️ Editar perfil
+        </a>
+
+        {% if perfil.bio %}
+          <p class="bio">{{ perfil.bio }}</p>
+        {% else %}
+          <p class="bio bio-vazia">Você ainda não adicionou uma bio.</p>
+        {% endif %}
+
+    </div>
+
+    <div class="lotus-divider"></div>
+
+    <!-- ===============================
+         ABAS
+    ================================ -->
+
+    <div class="perfil-tabs">
+
+        <a class="tab {% if tab == 'publicadas' %}active{% endif %}"
+           href="{% url 'perfil' %}?tab=publicadas">
+           📖 Publicadas ({{ publicadas|length }})
+        </a>
+
+        <a class="tab {% if tab == 'rascunhos' %}active{% endif %}"
+           href="{% url 'perfil' %}?tab=rascunhos">
+           📝 Rascunhos ({{ rascunhos|length }})
+        </a>
+
+    </div>
+
+    <!-- ===============================
+         CONTEÚDO DAS ABAS
+    ================================ -->
+
+    {% if tab == 'rascunhos' %}
+
+        <!-- RASCUNHOS -->
+        <div class="perfil-bloco">
+
+            {% for fanfic in rascunhos %}
+                <div class="fanfic-card">
+
+                    <h4>{{ fanfic.titulo }}</h4>
+                    <p class="muted">Rascunho • Só você pode ver</p>
+
+                    <div class="card-actions">
+
+                        <a href="{% url 'editar_fanfic' fanfic.id %}">
+                            ✏️ Continuar escrevendo
+                        </a>
+
+                        <form method="POST"
+                              action="{% url 'excluir_fanfic' fanfic.id %}"
+                              onsubmit="return confirm('Tem certeza que deseja excluir este rascunho? Essa ação não pode ser desfeita.');">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-danger">
+                                🗑️ Excluir
+                            </button>
+                        </form>
+
+                    </div>
+
+                </div>
+            {% empty %}
+                <p class="vazio">Você não tem rascunhos.</p>
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <!-- PUBLICADAS (PADRÃO) -->
+        <div class="perfil-bloco">
+
+            {% for fanfic in publicadas %}
+                <div class="fanfic-card">
+
+                    <h4>{{ fanfic.titulo }}</h4>
+                    <p class="muted">
+                        {{ fanfic.capitulos.count }} capítulo(s)
+                    </p>
+
+                    <div class="card-actions">
+                        <a href="{% url 'fanfic_detail' fanfic.id %}">
+                            👀 Ver história
+                        </a>
+
+                        <a href="{% url 'editar_fanfic' fanfic.id %}">
+                            ✏️ Editar
+                        </a>
+                    </div>
+
+                </div>
+            {% empty %}
+                <p class="vazio">Você ainda não publicou histórias.</p>
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
+
+</section>
+{% endblock %}

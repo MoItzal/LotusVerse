@@ -1,0 +1,54 @@
+/* =========================
+   CAMADA GLOBAL DO APP
+   ========================= */
+
+/* Tudo que é conteúdo real fica acima das pétalas */
+main,
+nav,
+.card,
+.featured-card,
+form {
+    position: relative;
+    z-index: 20;
+}
+
+/* =========================
+   BOTÕES NEON DE TEMA
+   ========================= */
+
+#theme-toggle-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.theme-btn {
+    background: none;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    font-size: 22px;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border-radius: 50%;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px var(--accent-color);
+}
+
+.theme-btn:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+.theme-btn.active {
+    background: var(--accent-color);
+    color: #fff;
+    box-shadow: 0 0 20px var(--accent-color);
+}

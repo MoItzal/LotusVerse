@@ -1,0 +1,120 @@
+.autor-wrap {
+  background: rgba(255, 0, 0, 0.05);
+}
+
+
+.autor-header{
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.autor-avatar{
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #f0cfe0;
+  flex: 0 0 auto;
+  background: #fff;
+  display: grid;
+  place-items: center;
+}
+
+.autor-avatar img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-fallback{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background: #fde6f0;
+  color: #d85b9a;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.autor-info{ flex: 1; }
+
+.autor-nome{
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.autor-bio{
+  margin: .35rem 0 0;
+  color: #666;
+  line-height: 1.4;
+}
+
+.bio-vazia{ color: #888; font-style: italic; }
+
+.divider{
+  height: 1px;
+  background: #f0cfe0;
+  margin: 1.6rem 0 1.2rem;
+}
+
+.bloco-title h2{
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.sub{
+  margin: .25rem 0 1rem;
+  color: #8a8a8a;
+}
+
+.cards{
+  display: grid;
+  gap: 1rem;
+}
+
+.card{
+  background: #fff;
+  border: 1px solid #f0cfe0;
+  border-radius: 14px;
+  padding: 1.1rem 1.2rem;
+}
+
+.card-title{
+  margin: 0 0 .35rem;
+  font-size: 1.05rem;
+}
+
+.card-desc{
+  margin: 0 0 .85rem;
+  color: #777;
+}
+
+.btn{
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: .45rem .9rem;
+  font-size: .9rem;
+}
+
+.btn.ghost{
+  background: transparent;
+  color: #d85b9a;
+  border: 1px solid #f0cfe0;
+}
+
+.btn.ghost:hover{
+  background: #fde6f0;
+}
+
+.vazio{
+  color: #888;
+  padding: .5rem 0;
+}
+
+.autor-page .container {
+  max-width: none;
+  padding: 0;
+}

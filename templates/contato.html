@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="contato-container">
+
+    <div class="contato-header">
+        <h1 class="contato-titulo">Entre em Contato</h1>
+        <p class="contato-subtitulo">Tem alguma dúvida, sugestão ou quer falar com a equipe? Estamos aqui para ouvir você.</p>
+    </div>
+
+    <form method="POST" class="form-contato">
+        {% csrf_token %}
+
+        <div class="form-grupo">
+            <label for="nome">Seu nome</label>
+            <input type="text" id="nome" name="nome" required>
+        </div>
+
+        <div class="form-grupo">
+            <label for="email">Seu e-mail</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-grupo">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" rows="6" required></textarea>
+        </div>
+
+        <button type="submit" class="botao-enviar">Enviar Mensagem</button>
+    </form>
+
+    <div class="contato-info">
+        <h3>📮 Outras formas de contato</h3>
+        <p>✦ Suporte: <strong>support@lotusverse.com</strong></p>
+    </div>
+
+</section>
+
+<style>
+/* Estilos da página de contato */
+.contato-container {
+    max-width: 800px;
+    margin: 70px auto;
+    padding: 20px;
+    color: var(--text-color);
+}
+
+.contato-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.contato-titulo {
+    font-size: 2.8rem;
+    color: var(--accent-color);
+    font-weight: bold;
+    text-shadow: 0 0 10px var(--accent-color);
+}
+
+.contato-subtitulo {
+    font-size: 1.2rem;
+    color: var(--secondary-text);
+}
+
+.form-contato {
+    background: var(--card-color);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.10);
+    margin-bottom: 40px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.form-grupo {
+    margin-bottom: 20px;
+}
+
+.form-grupo label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.form-grupo input,
+.form-grupo textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    background: var(--bg-color);
+    transition: 0.2s;
+}
+
+.form-grupo input:focus,
+.form-grupo textarea:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 8px rgba(0,0,0,0.15);
+}
+
+.botao-enviar {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.1rem;
+    background: var(--accent-color);
+    border: none;
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.botao-enviar:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+}
+
+.contato-info {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--secondary-text);
+}
+
+.contato-info h3 {
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+</style>
+
+{% endblock %}

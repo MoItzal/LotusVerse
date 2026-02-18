@@ -1,0 +1,50 @@
+/* ===============================
+   PETALS.CSS – CINEMATIC FINAL
+   =============================== */
+
+#petals-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+
+    /* 🔒 CAMADA ABSOLUTA DE FUNDO */
+    z-index: -1;
+}
+
+/* pétala individual */
+.petal {
+    position: absolute;
+    top: -90px;
+
+    width: 24px;
+    height: 24px;
+
+    opacity: 0.45;
+    filter: blur(0.6px);
+
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    will-change: transform;
+}
+
+/* ===============================
+   ANIMAÇÃO NATURAL CINEMATOGRÁFICA
+   =============================== */
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    12% {
+        opacity: 0.55;
+    }
+
+    100% {
+        transform: translateY(140vh) rotate(420deg);
+        opacity: 0;
+    }
+}

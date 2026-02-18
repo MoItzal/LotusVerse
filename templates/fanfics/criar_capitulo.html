@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Novo Capítulo • {{ fanfic.titulo }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/criar_capitulo.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="chapter-wrap">
+
+  <header class="chapter-header">
+    <h1>➕ Novo Capítulo</h1>
+    <p class="subtitle">{{ fanfic.titulo }}</p>
+  </header>
+
+  <div class="chapter-card">
+    <form method="POST" class="chapter-form">
+      {% csrf_token %}
+
+      <div class="field">
+        <label for="id_titulo">Título do capítulo</label>
+        <input
+          id="id_titulo"
+          type="text"
+          name="titulo"
+          placeholder="Ex: Capítulo 1 — O começo"
+          required
+        >
+      </div>
+
+      <div class="field">
+        <label for="id_conteudo">Conteúdo</label>
+        <textarea
+          id="id_conteudo"
+          name="conteudo"
+          placeholder="Escreva aqui..."
+          rows="14"
+          required
+        ></textarea>
+      </div>
+
+      <div class="actions">
+        <a class="btn-outline" href="{% url 'editar_fanfic' fanfic.id %}">
+          ← Voltar para edição
+        </a>
+
+        <button class="btn-primary" type="submit">
+          💾 Salvar capítulo
+        </button>
+      </div>
+
+    </form>
+  </div>
+</section>
+{% endblock %}

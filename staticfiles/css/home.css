@@ -1,0 +1,819 @@
+/* =========================================================
+   LOTUS VERSE — HOME.CSS (GLOBAL)
+   Base + Temas + Navbar + Componentes globais
+   ========================================================= */
+
+/* ===============================
+   VARIÁVEIS (BASE)
+   =============================== */
+:root{
+  --bg-color:#f5f7fa;
+  --text-color:#1a1a1a;
+  --card-color:#ffffff;
+  --accent-color:#4a76a8;
+  --secondary-text:#5f6b7a;
+
+  /* utilitários */
+  --border-color: color-mix(in srgb, var(--secondary-text) 25%, transparent);
+  --shadow: 0 18px 40px rgba(0,0,0,.18);
+  --shadow-strong: 0 28px 60px rgba(0,0,0,.28);
+}
+
+/* ===============================
+   TEMAS (aplicados no BODY)
+   =============================== */
+body.theme-dark{
+  --bg-color:#0d0d14;
+  --text-color:#e6e6ee;
+  --card-color:#161622;
+  --accent-color:#8b5cf6;
+  --secondary-text:#b5b5c5;
+}
+
+body.theme-neon{
+  --bg-color:#050507;
+  --text-color:#f5f2ff;
+  --card-color:#0c0c18;
+  --accent-color:#9d4bff;
+  --secondary-text:#c7bfff;
+}
+
+body.theme-blossom{
+  --bg-color:#fff7fb;
+  --text-color:#4a2f40;
+  --card-color:#ffe6f2;
+  --accent-color:#ff5fbf;
+  --secondary-text:#7a4a63;
+}
+
+body.theme-calm{
+  --bg-color:#f5f7fa;
+  --text-color:#1a1a1a;
+  --card-color:#ffffff;
+  --accent-color:#4a76a8;
+  --secondary-text:#5f6b7a;
+}
+
+body.theme-light{
+  --bg-color:#ffffff;
+  --text-color:#1e1e1e;
+  --card-color:#f3f4f8;
+  --accent-color:#6a5cff;
+  --secondary-text:#666;
+}
+
+/* ===============================
+   RESET / BASE
+   =============================== */
+*{ box-sizing:border-box; }
+
+html, body{
+  height:100%;
+}
+
+body{
+  margin:0;
+  font-family:"Inter", sans-serif;
+  font-weight:300;
+  background:var(--bg-color);
+  color:var(--text-color);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+img{
+  max-width:100%;
+  height:auto;
+  display:block;
+}
+
+/* Transição suave de tema */
+body,
+.navbar,
+main,
+.theme-current,
+.theme-dropdown,
+.nav-links a{
+  transition:
+    background-color .45s ease,
+    color .35s ease,
+    border-color .35s ease,
+    box-shadow .35s ease;
+}
+
+body.theme-transition *{
+  transition:
+    background-color .45s ease,
+    color .35s ease,
+    border-color .35s ease,
+    box-shadow .35s ease !important;
+}
+
+/* ===============================
+   NAVBAR
+   =============================== */
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  height:88px;
+  padding:0 56px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  background:linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--bg-color) 88%, black),
+    var(--bg-color)
+  );
+
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 6px 22px rgba(0,0,0,.25),
+    inset 0 -2px 0 color-mix(in srgb, var(--accent-color) 60%, transparent);
+
+  z-index:1000;
+}
+
+.navbar-logo img{
+  height:44px;
+  max-height:44px;
+  width:auto;
+  object-fit:contain;
+
+  filter: drop-shadow(
+    0 0 14px color-mix(in srgb, var(--accent-color) 55%, transparent)
+  );
+
+  transition: transform .25s ease;
+}
+
+.navbar-logo img:hover{
+  transform: scale(1.05);
+}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:32px;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:32px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:var(--text-color);
+  font-weight:400;
+  font-size:.95rem;
+  letter-spacing:.04em;
+  opacity:.85;
+}
+
+.nav-links a:hover{
+  opacity:1;
+}
+
+.nav-login{
+  color:var(--accent-color);
+  font-weight:500;
+  opacity:1;
+}
+
+.nav-login:hover{
+  text-decoration:underline;
+}
+
+/* ===============================
+   THEME SELECTOR
+   =============================== */
+.theme-selector{
+  position:relative;
+  display:flex;
+  align-items:center;
+}
+
+.theme-current{
+  padding:6px 14px;
+  border-radius:16px;
+
+  font-size:.8rem;
+  font-weight:500;
+
+  background:var(--card-color);
+  color:var(--secondary-text);
+
+  border:1px solid var(--border-color);
+
+  cursor:pointer;
+  user-select:none;
+}
+
+.theme-current:hover{
+  background: color-mix(in srgb, var(--card-color) 92%, var(--accent-color));
+  border-color: var(--accent-color);
+}
+
+.theme-dropdown{
+  position:absolute;
+  top:calc(100% + 8px);
+  right:0;
+
+  min-width:160px;
+  padding:6px;
+
+  background:var(--card-color);
+  border-radius:12px;
+
+  box-shadow: 0 10px 28px rgba(0,0,0,.25);
+
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+
+  opacity:0;
+  pointer-events:none;
+  transform: translateY(-6px);
+
+  transition: all .25s ease;
+  z-index:2000;
+}
+
+.theme-selector.open .theme-dropdown{
+  opacity:1;
+  pointer-events:auto;
+  transform: translateY(0);
+}
+
+.theme-item{
+  padding:6px 10px;
+  border-radius:8px;
+  font-size:.8rem;
+  color:var(--text-color);
+  cursor:pointer;
+}
+
+.theme-item:hover{
+  background: color-mix(in srgb, var(--accent-color) 18%, transparent);
+}
+
+/* ===============================
+   MAIN / LAYOUT
+   =============================== */
+main{
+  padding-top:88px; /* altura da navbar */
+  min-height: calc(100vh - 88px);
+  background: var(--bg-color);
+}
+
+/* ===============================
+   BOTÕES / UTILITÁRIOS
+   =============================== */
+.btn-link{
+  background:none;
+  border:none;
+  color:inherit;
+  cursor:pointer;
+  font:inherit;
+  padding:0;
+}
+
+.btn-primary{
+  padding:.85rem 2.2rem;
+  border-radius:999px;
+
+  background: linear-gradient(
+    90deg,
+    var(--accent-color),
+    color-mix(in srgb, var(--accent-color) 60%, white)
+  );
+
+  color:#fff;
+  font-weight:600;
+  font-size:.95rem;
+  text-decoration:none;
+
+  box-shadow: 0 12px 34px color-mix(in srgb, var(--accent-color) 45%, transparent);
+
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.btn-primary:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 18px 44px color-mix(in srgb, var(--accent-color) 60%, transparent);
+}
+
+/* ===============================
+   HOME — HERO (somente na HOME)
+   =============================== */
+body.home-page{
+  overflow-x:hidden;
+}
+
+body.home-page .hero{
+  position:relative;
+  min-height:60vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  padding: 4rem 2rem;
+
+  background:
+    radial-gradient(
+      circle at center,
+      color-mix(in srgb, var(--accent-color) 12%, transparent),
+      transparent 70%
+    );
+}
+
+body.home-page .hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.25;
+  pointer-events:none;
+}
+
+
+body.home-page .hero-content{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  padding: 0 24px;
+
+  opacity:0;
+  transform: translateY(24px);
+  animation: heroFadeUp 1.1s ease forwards;
+  animation-delay: .2s;
+}
+
+body.home-page .hero h1{
+  font-family: "Playfair Display", serif;
+  font-size: clamp(3rem, 6vw, 4.6rem);
+  font-weight:500;
+  line-height:1.15;
+  letter-spacing:.02em;
+  margin-bottom: 1.4rem;
+
+  text-shadow: 0 0 30px color-mix(in srgb, var(--accent-color) 25%, transparent);
+}
+
+body.home-page .hero p{
+  font-size:1.05rem;
+  font-weight:300;
+  letter-spacing:.06em;
+  color: var(--secondary-text);
+  max-width:560px;
+  margin: 0 auto 2.8rem;
+}
+
+body.home-page .hero-actions{
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+body.home-page .hero .btn-primary{
+  box-shadow:
+    0 10px 28px color-mix(in srgb, var(--accent-color) 35%, transparent),
+    0 0 40px color-mix(in srgb, var(--accent-color) 25%, transparent);
+}
+
+
+/* animações do hero */
+body.home-page .hero-content > *{
+  opacity:0;
+  transform: translateY(16px);
+  animation: heroItemFade .9s ease forwards;
+}
+
+body.home-page .hero-content > *:nth-child(1){ animation-delay:.35s; }
+body.home-page .hero-content > *:nth-child(2){ animation-delay:.55s; }
+body.home-page .hero-content > *:nth-child(3){ animation-delay:.75s; }
+
+@keyframes heroFadeUp{
+  to{ opacity:1; transform: translateY(0); }
+}
+
+@keyframes heroItemFade{
+  to{ opacity:1; transform: translateY(0); }
+}
+
+/* ===============================
+   RESPONSIVO (NAVBAR)
+   =============================== */
+@media (max-width: 900px){
+  .navbar{
+    padding: 0 18px;
+  }
+
+  .nav-right{
+    gap:18px;
+  }
+
+  .nav-links{
+    gap:16px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+}
+
+/* ===============================
+   CONTAINER / LARGURA BOA (GLOBAL)
+   =============================== */
+main .container{
+  width: min(980px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+
+/* ===============================
+   SEÇÕES (HOME)
+   =============================== */
+body.home-page .section{
+  padding: 2.4rem 0;
+}
+
+body.home-page .section-title{
+  margin-bottom: 1.1rem;
+  text-align: left;
+}
+
+body.home-page .section-title h2{
+  margin: 0 0 .35rem;
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+
+body.home-page .section-title p{
+  margin: 0;
+  color: var(--secondary-text);
+}
+
+/* ===============================
+   FANFIC DA SEMANA (CARD GRANDE)
+   =============================== */
+body.home-page .feature-card{
+  background: var(--card-color);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 1.4rem;
+  box-shadow: 0 14px 34px rgba(0,0,0,.14);
+}
+
+body.home-page .feature-card h3{
+  margin: 0 0 .6rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+body.home-page .tags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: .4rem 0 1rem;
+}
+
+body.home-page .tag{
+  font-size: .78rem;
+  padding: .35rem .7rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: color-mix(in srgb, var(--card-color) 85%, white);
+  color: var(--secondary-text);
+}
+
+body.home-page .feature-text{
+  color: var(--secondary-text);
+  line-height: 1.65;
+  margin: 0 0 1.1rem;
+
+  /* limita texto na home */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+body.home-page .feature-actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* botão secundário simples */
+body.home-page .btn-outline{
+  padding: .85rem 2.2rem;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform .25s ease, border-color .25s ease;
+}
+
+body.home-page .btn-outline:hover{
+  transform: translateY(-2px);
+  border-color: var(--accent-color);
+}
+
+/* link fantasma */
+body.home-page .btn-ghost{
+  color: var(--secondary-text);
+  text-decoration: none;
+  font-weight: 500;
+  opacity: .9;
+}
+body.home-page .btn-ghost:hover{
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* ===============================
+   GRID (DESTAQUES)
+   =============================== */
+body.home-page .grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+body.home-page .card{
+  background: var(--card-color);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 1.2rem;
+  box-shadow: 0 10px 24px rgba(0,0,0,.10);
+}
+
+body.home-page .card h3{
+  margin: 0 0 .35rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+body.home-page .card p{
+  margin: .7rem 0 1rem;
+  color: var(--secondary-text);
+  line-height: 1.55;
+}
+
+/* ===============================
+   CATEGORIAS (CHIPS)
+   =============================== */
+body.home-page .chips{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+body.home-page .chip{
+  padding: .7rem .9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: color-mix(in srgb, var(--card-color) 90%, white);
+  color: var(--text-color);
+  text-decoration: none;
+  transition: border-color .25s ease, transform .25s ease;
+}
+
+body.home-page .chip:hover{
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+/* ===============================
+   CTA CRIADORES
+   =============================== */
+body.home-page .cta{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-color) 20%, transparent);
+  border-radius: 20px;
+  padding: 1.4rem;
+}
+
+body.home-page .cta h2{
+  margin: 0 0 .35rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+body.home-page .cta p{
+  margin: 0;
+  color: var(--secondary-text);
+}
+
+/* ===============================
+   FOOTER
+   =============================== */
+body.home-page .footer{
+  margin-top: 1.8rem;
+  padding: 1.4rem 0;
+  border-top: 1px solid var(--border-color);
+  color: var(--secondary-text);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+body.home-page .footer a{
+  color: var(--secondary-text);
+  text-decoration: none;
+  margin-left: 12px;
+}
+body.home-page .footer a:hover{
+  text-decoration: underline;
+}
+
+/* ===============================
+   RESPONSIVO HOME
+   =============================== */
+@media (max-width: 900px){
+  body.home-page .grid{
+    grid-template-columns: 1fr;
+  }
+  body.home-page .cta{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+body.theme-light.home-page .hero .btn-primary{
+  box-shadow:
+    0 10px 28px rgba(0,0,0,.16),
+    0 0 42px color-mix(in srgb, var(--accent-color) 30%, transparent);
+}
+
+/* ===============================
+   FIX — DESTAQUES (cards-grid + links)
+   (colocar no FINAL do home.css)
+   =============================== */
+
+/* seu HTML usa cards-grid, não grid */
+body.home-page .cards-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+/* responsivo */
+@media (max-width: 900px){
+  body.home-page .cards-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* seu card é um <a>, então precisamos "neutralizar link" */
+body.home-page a.card{
+  display: block;
+  text-decoration: none !important;
+  color: var(--text-color) !important;
+}
+
+/* título no HTML é p.title, não h3 */
+body.home-page .card .title{
+  margin: 0 0 .35rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  font-family: "Playfair Display", serif;
+  color: var(--text-color);
+}
+
+/* parágrafos dentro do card */
+body.home-page .card p{
+  margin: .7rem 0 0;
+  color: var(--secondary-text);
+  line-height: 1.55;
+}
+
+/* meta (status/tags) ficar alinhado */
+body.home-page .card-meta{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+/* status */
+body.home-page .status{
+  font-size: .78rem;
+  padding: .35rem .7rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: color-mix(in srgb, var(--card-color) 90%, white);
+  color: var(--secondary-text);
+}
+
+body.home-page .status-completa{
+  background: color-mix(in srgb, #22c55e 14%, var(--card-color));
+  border-color: color-mix(in srgb, #22c55e 45%, var(--border-color));
+  color: var(--text-color);
+}
+
+body.home-page .status-andamento{
+  background: color-mix(in srgb, #f59e0b 14%, var(--card-color));
+  border-color: color-mix(in srgb, #f59e0b 45%, var(--border-color));
+  color: var(--text-color);
+}
+
+/* tags */
+body.home-page .card-tags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+body.home-page .card-tags .tag{
+  font-size: .78rem;
+  padding: .35rem .7rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: color-mix(in srgb, var(--card-color) 92%, var(--bg-color) 8%);
+  color: var(--secondary-text);
+}
+
+/* hover do card (mais "premium") */
+body.home-page a.card:hover{
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-strong);
+}
+
+/* ===============================
+   FIX — BOTÕES EM TEMAS CLAROS
+   =============================== */
+
+/* no tema light, o gradiente para white deixa o botão apagado */
+body.theme-light .btn-primary{
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--accent-color) 88%, black),
+    var(--accent-color)
+  );
+  color: #fff;
+  border: 1px solid color-mix(in srgb, var(--accent-color) 60%, black);
+  box-shadow: 0 12px 34px rgba(0,0,0,.18);
+}
+
+/* opcional: deixa o hover mais “vivo” */
+body.theme-light .btn-primary:hover{
+  filter: brightness(1.05);
+}
+
+body.theme-blossom .btn-primary{
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--accent-color) 82%, black),
+    var(--accent-color)
+  );
+  color:#fff;
+  border: 1px solid color-mix(in srgb, var(--accent-color) 55%, black);
+}
+
+/* ===============================
+   FIX GERAL — BOTÃO PRIMARY EM TEMAS CLAROS
+   (Calm / Light / Blossom)
+   =============================== */
+
+body.theme-calm .btn-primary,
+body.theme-light .btn-primary,
+body.theme-blossom .btn-primary{
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--accent-color) 85%, black),
+    var(--accent-color)
+  );
+  color: #fff;
+  border: 1px solid color-mix(in srgb, var(--accent-color) 55%, black);
+  box-shadow: 0 14px 34px rgba(0,0,0,.18);
+}
+
+/* garante contraste do texto */
+body.theme-calm .btn-primary,
+body.theme-light .btn-primary,
+body.theme-blossom .btn-primary{
+  text-shadow: 0 2px 10px rgba(0,0,0,.20);
+}
+
+body.theme-calm .btn-primary:hover,
+body.theme-light .btn-primary:hover,
+body.theme-blossom .btn-primary:hover{
+  filter: brightness(1.06);
+  transform: translateY(-3px);
+}

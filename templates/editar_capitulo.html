@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/editar_fanfic.css' %}">
+{% endblock %}
+
+{% block title %}Editar Capítulo{% endblock %}
+
+{% block content %}
+<section class="editor-container">
+
+  <h1>✍️ Editar Capítulo</h1>
+
+  <p>
+    <a href="{% url 'editar_fanfic' fanfic.id %}">← Voltar para o índice</a>
+  </p>
+
+  <form method="POST">
+    {% csrf_token %}
+
+    <label>Título do capítulo</label>
+    <input type="text" name="titulo" value="{{ capitulo.titulo }}" required>
+
+    <label>Conteúdo</label>
+    <textarea name="conteudo" rows="18" required>{{ capitulo.conteudo }}</textarea>
+
+    <button type="submit" class="btn salvar">💾 Salvar capítulo</button>
+  </form>
+
+</section>
+{% endblock %}

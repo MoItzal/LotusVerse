@@ -1,0 +1,120 @@
+/* Página de leitura */
+.reading-mode{
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+.fanfic-content{
+  background: var(--card-color);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow: var(--shadow);
+}
+
+.fanfic-header h1{
+  margin: 0 0 8px;
+  font-size: 2.2rem;
+}
+
+.fanfic-meta{
+  margin: 0 0 16px;
+  color: var(--secondary-text);
+}
+
+.fanfic-text{
+  line-height: 1.75;
+  font-size: 1.05rem;
+  margin: 18px 0 22px;
+}
+
+/* Ações (favoritar/ler depois) */
+.acoes-fanfic,
+.fanfic-actions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.acoes-fanfic a,
+.fanfic-actions a{
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border-color);
+  background: color-mix(in srgb, var(--card-color) 90%, var(--accent-color) 10%);
+  color: var(--text-color);
+  transition: transform .08s ease, box-shadow .08s ease;
+}
+
+.acoes-fanfic a:hover,
+.fanfic-actions a:hover{
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+.like-disabled{
+  opacity: .65;
+}
+
+/* Botão de excluir mais “perigoso” */
+.btn-danger{
+  border-color: color-mix(in srgb, #ff3b3b 40%, var(--border-color));
+  background: color-mix(in srgb, #ff3b3b 12%, var(--card-color));
+}
+
+/* Comentários */
+.fanfic-comments h2{
+  margin: 14px 0 12px;
+}
+
+.comentarios-lista{
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 14px;
+}
+
+.comentarios-lista li{
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  background: var(--card-color);
+}
+
+.fanfic-comments form{
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.fanfic-comments textarea{
+  width: 100%;
+  min-height: 90px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--card-color);
+  color: var(--text-color);
+  outline: none;
+}
+
+.fanfic-comments button{
+  justify-self: start;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: none;
+  background: var(--accent-color);
+  color: white;
+  cursor: pointer;
+}
+
+.fanfic-comments button:hover{
+  filter: brightness(1.05);
+}
+
+.muted{
+  opacity: .7;
+}

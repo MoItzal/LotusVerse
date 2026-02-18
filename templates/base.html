@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Responsividade -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Lotus Verse{% endblock %}</title>
+
+    <!-- =========================
+         GOOGLE FONTS
+    ========================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- =========================
+         CSS PRINCIPAL
+    ========================= -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/criar-fanfic.css' %}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+
+
+<!-- =========================
+        NAVBAR
+========================= -->
+<nav class="navbar">
+
+    <!-- LOGO -->
+    <div class="navbar-logo">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'img/logo.png' %}" alt="Lotus Verse">
+        </a>
+    </div>
+
+    <div class="nav-right">
+
+        <!-- LINKS -->
+        <div class="nav-links">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'explorar' %}">Explorar</a>
+            <a href="{% url 'criar_fanfic' %}">Criar</a>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'perfil'%}">Meu perfil</a>
+
+                <form action="{% url 'logout' %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-login btn-link">
+                        Sair
+                    </button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" class="nav-login">Login</a>
+            {% endif %}
+
+            <a href="{% url 'sobre' %}">Sobre</a>
+            <a href="{% url 'contato' %}">Contato</a>
+        </div>
+
+        <!-- =========================
+              SELETOR DE TEMA
+        ========================= -->
+        <div class="theme-selector" id="theme-box">
+
+            <!-- Tema atual -->
+            <div class="theme-current" id="theme-current">
+                🌿 Lotus Calm
+            </div>
+
+            <!-- Dropdown -->
+            <div class="theme-dropdown">
+                <div class="theme-item" data-theme="calm">🌿 Lotus Calm</div>
+                <div class="theme-item" data-theme="blossom">🌸 Blossom</div>
+                <div class="theme-item" data-theme="neon">✨ Neon</div>
+                <div class="theme-item" data-theme="dark">🌑 Dark</div>
+                <div class="theme-item" data-theme="light">🌕 Light</div>
+            </div>
+
+        </div>
+
+    </div>
+</nav>
+
+<!-- =========================
+        CONTEÚDO
+========================= -->
+<main>
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+</main>
+
+
+<!-- =========================
+        JS
+========================= -->
+<script src="{% static 'js/theme-toggle.js' %}"></script>
+{% block extra_js %}{% endblock %}
+
+
+</body>
+</html>

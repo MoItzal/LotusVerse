@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_class %}autor-page{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/perfil_autor.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="autor-wrap">
+
+  <!-- TOPO -->
+  <header class="autor-header">
+    <div class="autor-avatar">
+      {% if perfil.avatar %}
+        <img src="{{ perfil.avatar.url }}" alt="Avatar de {{ autor.username }}">
+      {% else %}
+        <span class="avatar-fallback">{{ autor.username|first|upper }}</span>
+      {% endif %}
+    </div>
+
+    <div class="autor-info">
+      <h1 class="autor-nome">{{ autor.username }}</h1>
+
+      {% if perfil.bio %}
+        <p class="autor-bio">{{ perfil.bio }}</p>
+      {% else %}
+        <p class="autor-bio bio-vazia">Este autor ainda não escreveu uma bio.</p>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- PUBLICADAS -->
+  <section class="bloco">
+    <div class="bloco-title">
+      <h2>📖 Histórias publicadas</h2>
+      <p class="sub">As histórias disponíveis para leitura</p>
+    </div>
+
+    <div class="cards">
+      {% for fanfic in fanfics %}
+        <article class="card">
+          <h3 class="card-title">{{ fanfic.titulo }}</h3>
+
+          {% if fanfic.descricao %}
+            <p class="card-desc">{{ fanfic.descricao|truncatechars:140 }}</p>
+          {% endif %}
+
+          <a class="btn ghost" href="{% url 'fanfic_detail' fanfic.id %}">👀 Ler história</a>
+        </article>
+      {% empty %}
+        <p class="vazio">Este autor ainda não publicou histórias.</p>
+      {% endfor %}
+    </div>
+  </section>
+
+</main>
+{% endblock %}

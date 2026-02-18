@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Fanfics de {{ autor }}{% endblock %}
+
+{% block content %}
+<h1>Fanfics de {{ autor }}</h1>
+
+{% if fanfics %}
+    <ul>
+        {% for f in fanfics %}
+            <li>
+                <a href="{% url 'fanfic_detail' f.id %}">{{ f.titulo }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>{{ autor }} ainda não publicou nenhuma fanfic.</p>
+{% endif %}
+{% endblock %}

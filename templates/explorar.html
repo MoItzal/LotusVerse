@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Explorar | Lotus Verse{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/explorar.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="explorar">
+
+    <!-- FILTRO POR TAG -->
+    <div class="filtro-tags">
+        <a href="{% url 'explorar' %}"
+           class="tag {% if not tag_ativa %}ativa{% endif %}">
+            Todas
+        </a>
+
+        {% for tag in tags %}
+            <a href="?tag={{ tag.nome }}"
+               class="tag {% if tag.nome == tag_ativa %}ativa{% endif %}">
+                {{ tag.nome }}
+            </a>
+        {% endfor %}
+    </div>
+
+    <!-- FANFICS -->
+    <div class="cards-grid">
+        {% for fanfic in fanfics %}
+            <article class="fanfic-card">
+                <h3>{{ fanfic.titulo }}</h3>
+
+                <p class="descricao">
+                    {{ fanfic.descricao|truncatechars:140 }}
+                </p>
+
+                <!-- TAGS -->
+                <div class="fanfic-tags">
+                    {% for tag in fanfic.tags.all %}
+                        <span class="tag-mini">{{ tag.nome }}</span>
+                    {% endfor %}
+                </div>
+
+                <a href="{% url 'fanfic_detail' fanfic.id %}" class="ler-btn">
+                    Ler
+                </a>
+            </article>
+        {% empty %}
+            <p class="vazio">Nenhuma fanfic encontrada.</p>
+        {% endfor %}
+    </div>
+
+</section>
+
+{% endblock %}

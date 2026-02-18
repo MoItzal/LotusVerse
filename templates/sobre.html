@@ -1,0 +1,92 @@
+{%  extends "base.html" %}
+{% block content %}
+
+<section class="sobre-container">
+    <div class="sobre-header">
+        <h1 class="sobre-titulo">Sobre o Lotus Verse</h1>
+        <p class="sobre-subtitulo">Onde histórias se tornam universos e cada leitor encontra um novo destino.</p>
+    </div>
+
+    <div class="sobre-bloco">
+        <h2>✨ O que é o Lotus Verse?</h2>
+        <p>
+            O Lotus Verse é um portal criado para amantes de histórias, mundos fictícios, fanfics e universos alternativos.
+            Aqui, cada escritor pode plantar uma semente — e vê-la florescer em forma de narrativa.  
+            Um lugar seguro, criativo e vibrante onde imaginação, emoção e liberdade caminham lado a lado.
+        </p>
+    </div>
+
+    <div class="sobre-bloco">
+        <h2>🌸 Por que "Lótus"?</h2>
+        <p>
+             A flor de lótus representa renascimento, beleza e profundidade.  
+            Assim como ela floresce na escuridão, acreditamos que grandes histórias surgem dos lugares mais
+            inesperados — inclusive de dentro de nós mesmos.
+        </p>
+    </div>
+
+    <div class="sobre-rodape">
+        <p>🌟Obrigado por fazer parte deste universo.
+        <br>Continue criando, lendo e florescendo.</p>
+
+        </div>
+</section>
+
+<style>
+.sobre-container {
+    max-width: 900px;
+    margin: 70px auto;
+    padding: 20px;
+    color: var(--text-color);
+}
+
+.sobre-header{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.sobre-titulo {
+    font-size: 2.8rem;
+    font-weigth: bold;
+    color: var(--accent-color);
+    text-shadow: 0 0 10px var(--accenter-color);
+}
+
+.sobre-subtitulo {
+    font-size: 1.2rem;
+    color: var(--secondary-text);
+}
+
+.sobre-bloco {
+    background: var(--card-color);
+    padding: 25px;
+    margin: 20px 0;
+    border-radius: 16px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.10);
+    border-left: 4px solid var(accent-color);
+    transition: 0.3s;
+}
+
+.sobre-bloco:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(0,0,0,0.18);
+}
+
+.sobre-bloco h2 {
+    margin-bottom: 10px;
+    color: var(--accent-color);
+}
+
+.sobre-bloco p {
+    line-height: 1.7;
+}
+
+.sobre-rodape {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 1.1rem;
+    color: var(--secondary-text);
+}
+</style>
+
+{% endblock %}

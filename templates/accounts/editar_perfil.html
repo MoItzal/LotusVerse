@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_class %}perfil-edit-page{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/perfil.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="perfil-edit-wrapper">
+
+  <div class="perfil-edit-card">
+
+    <h2 class="perfil-edit-title">Editar perfil</h2>
+    <p class="perfil-edit-subtitle">Atualize seu avatar e escreva uma bio 💬</p>
+
+    {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+          <p class="message">{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data" class="perfil-edit-form">
+      {% csrf_token %}
+
+      {% if form.errors %}
+        <div class="form-errors">
+          {{ form.errors }}
+        </div>
+      {% endif %}
+
+      <div class="field">
+        <label class="label">Avatar</label>
+        <div class="avatar-row">
+          <div class="avatar-preview">
+            {% if form.instance.avatar %}
+              <img src="{{ form.instance.avatar.url }}" alt="Avatar atual">
+            {% else %}
+              <span class="avatar-fallback">{{ user.username|first|upper }}</span>
+            {% endif %}
+          </div>
+
+          <div class="avatar-input">
+            {{ form.avatar }}
+            <small class="hint">Escolha uma imagem (PNG/JPG).</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Bio</label>
+        {{ form.bio }}
+        <small class="hint">Conte um pouquinho sobre você (opcional).</small>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn-save">Salvar alterações</button>
+        <a href="{% url 'perfil' %}" class="btn-cancel">Cancelar</a>
+      </div>
+
+    </form>
+
+  </div>
+
+</section>
+{% endblock %}

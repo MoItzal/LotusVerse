@@ -1,0 +1,160 @@
+/* =============================== */
+/*        FUNDO ANIMADO            */
+/* =============================== */
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--bg-color), var(--accent-color), #b388ff);
+    background-size: 200% 200%;
+    animation: gradientMove 12s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* =============================== */
+/*       CONTAINER DO LOGIN        */
+/* =============================== */
+
+.login-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Caixa de login com efeito vidro */
+.login-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 40px;
+    width: 380px;
+    border-radius: 16px;
+    box-shadow: 0 0 25px var(--accent-color); /* glow do tema */
+    text-align: center;
+    animation: fadeIn 0.8s ease;
+}
+
+/* =============================== */
+/*            TÍTULOS              */
+/* =============================== */
+
+.title {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 6px;
+    text-shadow: 0 0 10px var(--accent-color);
+}
+
+.subtitle {
+    color: var(--secondary-text);
+    margin-bottom: 25px;
+}
+
+/* =============================== */
+/*             INPUTS              */
+/* =============================== */
+
+.input-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    transition: box-shadow 0.3s ease, transform 0.15s ease;
+}
+
+.input-group input:focus {
+    box-shadow: 0 0 12px var(--accent-color);
+    transform: scale(1.01);
+}
+
+/* =============================== */
+/*            BOTÃO                */
+/* =============================== */
+
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent-color);
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+    transition: transform 0.15s, box-shadow 0.35s ease;
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px var(--accent-color);
+}
+
+/* =============================== */
+/*              ERRO               */
+/* =============================== */
+
+.error {
+    background: rgba(255, 90, 90, 0.4);
+    padding: 10px;
+    border-radius: 8px;
+    color: darkred;
+    margin-bottom: 10px;
+}
+
+/* =============================== */
+/*         REGISTRAR TEXTO         */
+/* =============================== */
+
+.register-text {
+    margin-top: 15px;
+    color: var(--secondary-text);
+}
+
+.register-text a {
+    color: var(--accent-color);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.register-text a:hover {
+    text-decoration: underline;
+}
+
+/* Entrada suave do card */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

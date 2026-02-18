@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_class %}home-page{% endblock %}
+
+{% block content %}
+
+<!-- ===============================
+     HERO
+     =============================== -->
+<header class="hero">
+    <div class="hero-content container">
+        <h1>Bem-vindo ao <span>Lotus Verse</span></h1>
+        <p>Onde histórias florescem na luz e na escuridão.</p>
+
+        <div class="hero-actions">
+            <a href="{% url 'explorar' %}" class="btn-primary">
+                Explorar histórias
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- ===============================
+     FANFIC DA SEMANA
+     =============================== -->
+<section class="section">
+    <div class="feature-card">
+
+        <span class="fanfic-label">Fanfic da Semana</span>
+
+        {% if fanfic_da_semana %}
+            <div class="fanfic-card">
+                <h2 class="fanfic-title">
+                    {{ fanfic_da_semana.titulo }}
+                </h2>
+
+                <p class="fanfic-description">
+                    {{ fanfic_da_semana.descricao }}
+                </p>
+
+                <div class="fanfic-actions">
+                    <a href="{% url 'ler_agora' fanfic_da_semana.id %}"
+                       class="btn-primary">
+                        Ler agora
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <p>Nenhuma fanfic da semana definida ainda.</p>
+        {% endif %}
+
+    </div>
+</section>
+
+<!-- ===============================
+     DESTAQUES
+     =============================== -->
+<section class="section">
+    <h3>Destaques</h3>
+
+    <div class="cards-grid">
+        {% if historias_populares %}
+            {% for f in historias_populares %}
+                <a class="card" href="{% url 'fanfic_detail' f.id %}">
+
+                    <!-- TÍTULO -->
+                    <p class="title">{{ f.titulo }}</p>
+
+                    <!-- STATUS + TAGS -->
+                    <div class="card-meta">
+
+                        {% if f.status == "completa" %}
+                            <span class="status status-completa">
+                                Completa
+                            </span>
+                        {% elif f.status == "andamento" %}
+                            <span class="status status-andamento">
+                                Em andamento
+                            </span>
+                        {% endif %}
+
+                        {% if f.tags.all %}
+                            <div class="card-tags">
+                                {% for tag in f.tags.all %}
+                                    <span class="tag">{{ tag.nome }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+                    <!-- CAPÍTULOS -->
+                    {% if f.capitulos.count > 0 %}
+                        <div class="card-reading-meta">
+                            <span>{{ f.capitulos.count }} capítulos</span>
+                        </div>
+                    {% endif %}
+
+                    <!-- DESCRIÇÃO -->
+                    <p>{{ f.descricao|truncatewords:20 }}</p>
+
+                </a>
+            {% endfor %}
+        {% else %}
+            <p>Nenhum destaque ainda.</p>
+        {% endif %}
+    </div>
+
+    <a href="{% url 'explorar' %}" class="btn" style="margin-top: 30px;">
+        Explorar mais fanfics
+    </a>
+</section>
+
+{% endblock %}

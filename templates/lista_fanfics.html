@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Fanfics • Lotus Verse{% endblock %}
+
+{% block content %}
+    <h1>Fanfics disponíveis</h1>
+
+    <ul>
+        {% for fanfic in fanfics %}
+            <li>
+                <a href="/fanfics/{{ fanfic.id }}">{{ fanfic.titulo }}</a><br>
+                <small>{{ fanfic.autor }}</small>
+            </li>
+        {% empty %}
+            <p>Nenhuma fanfic cadastrada ainda.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

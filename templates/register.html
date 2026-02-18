@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Cadastro - LotusVerse{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="auth-wrapper">
+  <div class="auth-card">
+
+    <h1 class="auth-title">Criar conta</h1>
+    <p class="auth-subtitle">Crie sua conta e comece sua jornada no LotusVerse 🌙</p>
+
+    {% if erro %}
+      <div class="auth-error">{{ erro }}</div>
+    {% endif %}
+
+    <form method="POST" class="auth-form">
+      {% csrf_token %}
+
+      <div class="auth-field">
+        <label>Usuário</label>
+        <input type="text" name="username" placeholder="Seu usuário" required>
+      </div>
+
+      <div class="auth-field">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="seuemail@email.com" required>
+      </div>
+
+      <div class="auth-field">
+        <label>Senha</label>
+        <input type="password" name="password1" placeholder="••••••••" required>
+      </div>
+
+      <div class="auth-field">
+        <label>Confirmar senha</label>
+        <input type="password" name="password2" placeholder="••••••••" required>
+      </div>
+
+      <button type="submit" class="auth-btn">Cadastrar</button>
+
+      <p class="auth-footer">
+        Já tem conta? <a href="{% url 'login' %}">Entrar</a>
+      </p>
+    </form>
+
+  </div>
+</section>
+{% endblock %}

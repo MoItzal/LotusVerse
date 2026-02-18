@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ capitulo.titulo }} • {{ fanfic.titulo }}
+{% endblock %}
+
+{% block content %}
+
+<main class="reading-mode">
+    <article class="fanfic-content">
+
+        <header class="fanfic-header">
+            <h1>{{ capitulo.titulo }}</h1>
+
+            <p class="fanfic-meta">
+                {{ fanfic.titulo }} —
+                por
+                <a href="{% url 'perfil_autor' fanfic.autor.username %}">
+                    {{ fanfic.autor.username }}
+                </a>
+            </p>
+        </header>
+
+        <section class="fanfic-text">
+            {{ capitulo.conteudo|linebreaks }}
+        </section>
+
+        <nav class="capitulo-nav">
+            {% if capitulo_anterior %}
+                <a href="{% url 'ler_capitulo' fanfic.id capitulo_anterior.ordem %}">
+                    ← Capítulo anterior
+                </a>
+            {% endif %}
+
+            <a href="{% url 'fanfic_detail' fanfic.id %}">
+                📚 Lista de capítulos
+            </a>
+
+            {% if proximo_capitulo %}
+                <a href="{% url 'ler_capitulo' fanfic.id proximo_capitulo.ordem %}">
+                    Próximo capítulo →
+                </a>
+            {% endif %}
+        </nav>
+
+    </article>
+</main>
+
+{% endblock %}
